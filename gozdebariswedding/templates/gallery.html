@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Galeri</h2>
+{% for photo in photos %}
+    <div>
+        <img src="{{ url_for('static', filename='uploads/' + photo.filename) }}" width="200"><br>
+        {{ photo.description }}
+    </div>
+{% else %}
+    <p>Henüz onaylanmış fotoğraf yok.</p>
+{% endfor %}
+{% endblock %}

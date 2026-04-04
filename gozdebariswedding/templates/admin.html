@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Paneli</h2>
+{% for photo in photos %}
+    <div>
+        <img src="{{ url_for('static', filename='uploads/' + photo.filename) }}" width="200"><br>
+        {{ photo.description }} | Kullanıcı ID: {{ photo.user_id }} | Onay: {{ photo.approved }}
+        {% if not photo.approved %}
+            <a href="{{ url_for('approve', photo_id=photo.id) }}">Onayla</a> |
+            <a href="{{ url_for('reject', photo_id=photo.id) }}">Sil</a>
+        {% endif %}
+    </div>
+    <hr>
+{% else %}
+    <p>Henüz fotoğraf yok.</p>
+{% endfor %}
+{% endblock %}

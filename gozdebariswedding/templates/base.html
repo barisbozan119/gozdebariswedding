@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gözde & Barış Wedding</title>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+        <p>
+            Merhaba {{ current_user.username }} |
+            <a href="{{ url_for('logout') }}">Çıkış</a> |
+            <a href="{{ url_for('upload') }}">Fotoğraf Yükle</a> |
+            <a href="{{ url_for('gallery') }}">Galeri</a>
+            {% if current_user.is_admin %}
+                | <a href="{{ url_for('admin') }}">Admin Paneli</a>
+            {% endif %}
+        </p>
+    {% else %}
+        <p>
+            <a href="{{ url_for('login') }}">Giriş Yap</a> |
+            <a href="{{ url_for('register') }}">Kayıt Ol</a>
+        </p>
+    {% endif %}
+    <hr>
+
+    {% block content %}{% endblock %}
+</body>
+</html>
